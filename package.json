@@ -1,0 +1,13 @@
+{
+  "name": "cordel",
+  "version": "1.0.0",
+  "description": "A simple cordel-like site",
+  "main": "index.js",
+  "repository": "git@github.com:lucassabreu/cordel.git",
+  "author": "Lucas dos Santos Abreu <lucas.s.abreu@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.5.1",
+    "turn.js": "https://github.com/blasten/turn.js"
+  }
+}

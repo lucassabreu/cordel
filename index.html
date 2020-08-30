@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Cordel</title>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" type="text/css" href="style.css?v3" />
+    <script
+      type="text/javascript"
+      src="node_modules/jquery/dist/jquery.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="http://www.turnjs.com/lib/turn.min.js"
+    ></script>
+
+    <script id="data" src="data.json" type="application/json"></script>
+    <script src="index.js" type="text/javascript"></script>
+
+    <style>
+      html {
+        --img-width: calc(100px * 2.3);
+        --img-big-width: calc(40vw * 0.8);
+        --img-height: calc(138px * 2.8);
+        --img-margin-top: 10px;
+        --thread-padding: 160px;
+        --clamp-height: 290px;
+        --thread-length: calc(var(--img-width) + ((var(--img-width) / 4) * 2));
+      }
+
+      ul.cordel-list {
+        position: relative;
+
+        display: flex;
+        justify-content: center;
+
+        margin: auto;
+        margin-top: -5rem;
+        overflow-x: auto;
+        white-space: nowrap;
+
+        height: calc(
+          var(--img-height) + var(--img-margin-top) + var(--thread-padding) +
+            100px
+        );
+      }
+
+      ul.cordel-list li:before {
+        content: "";
+        display: block;
+
+        width: calc(var(--img-width) * 1.5);
+        height: var(--clamp-height);
+        margin-top: calc(var(--thread-padding) * -1);
+        margin-bottom: calc(var(--thread-padding) * -1);
+        z-index: 1;
+        position: absolute;
+
+        background: url(frente.png) no-repeat;
+        background-position: center top;
+        background-size: var(--thread-length);
+      }
+
+      ul.cordel-list li {
+        position: relative;
+        padding-top: var(--thread-padding);
+
+        background: url(fundo.png) no-repeat;
+        background-position: center top;
+        background-size: var(--thread-length);
+        background-attachment: local;
+
+        display: inline-block;
+        width: calc(var(--img-width) * 1.5);
+        height: var(--img-height);
+      }
+
+      .cordel-link div {
+        display: flex;
+        width: calc(var(--img-width) * 1.5);
+        margin: 0;
+        margin-top: var(--img-margin-top);
+        padding: 0 calc(var(--img-width) / 4);
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .cordel-link div img {
+        width: var(--img-width);
+        transition: width 1s ease;
+      }
+
+      .cordel-link div.zoom {
+        --img-width: var(--img-big-width);
+
+        height: 100vh;
+        background-color: black;
+        width: 100vw;
+        padding: 5px;
+        position: fixed;
+        margin: 0;
+        top: 0;
+        left: 0;
+        z-index: 9;
+      }
+    </style>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        $("a.cordel-link").click(function() {
+          const name = this.href
+            .split("#")
+            .pop()
+            .split("/")
+            .slice(1)
+            .join("/");
+
+          $(this)
+            .find("div")
+            .addClass("zoom");
+
+          setTimeout(() => openCordel(name), 1000);
+        });
+
+        $(".flipbook")
+          .addClass("on-first-page")
+          .turn({
+            when: {
+              turning: (event, page, pageObject) => {
+                console.log({ event, page });
+                if (page === 1) {
+                  $(event.currentTarget).addClass("on-first-page");
+                  return;
+                }
+                $(event.currentTarget).removeClass("on-first-page");
+              },
+            },
+          });
+
+        $("#cordel-close").click(function() {
+          $(".cordels-container").css("visibility", "hidden");
+          $(".flipbook")
+            .addClass("on-first-page")
+            .turn("page", 1);
+          $(".cordel-link img").css("display", "inline");
+          $("a.cordel-link div").removeClass("zoom");
+        });
+      });
+
+      function openCordel(name) {
+        $(".cordel-link img").css("display", "none");
+        $(".flipbook").css("display", "none");
+        $(".cordels-container").css("visibility", "visible");
+
+        $("#cordel-" + name)
+          .css("display", "block")
+          .turn("page", 2);
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="jumbotron">
+        <h1 class="display-4">Bem vindos !</h1>
+        <p class="lead">
+          Bem vindos a apresentação dos cordéis desenvolvidos pelos alunos 3º
+          ano do curso de História da Universidade da Região de Joinville
+          (Univille), na disciplina de História e Historiografia do Brasil II,
+          durante o terceiro bimestre letivo de 2020, sob orientação da
+          Professora Roberta Meira. A proposta dessa atividade consistia que
+          após a leitura e estudo do romance “Escrava Isaura”, de Bernardo
+          Guimarães, os estudantes desenvolvessem cordéis a partir dos contextos
+          abordados no romance e estudados em sala.
+        </p>
+      </div>
+    </header>
+
+    <main role="main">
+      <ul class="cordel-list">
+        <li>
+          <a class="cordel-link" href="#cordel/first">
+            <div>
+              <img
+                src="https://longedeser.files.wordpress.com/2015/03/capa_inspiracao_cigana-2.jpg?w=266&h=365"
+              />
+            </div>
+          </a>
+        </li>
+
+        <li>
+          <a class="cordel-link" href="#cordel/first">
+            <div>
+              <img
+                src="https://longedeser.files.wordpress.com/2015/03/capa_inspiracao_cigana-2.jpg?w=266&h=365"
+              />
+            </div>
+          </a>
+        </li>
+
+        <li>
+          <a class="cordel-link" href="#cordel/first">
+            <div>
+              <img
+                src="https://longedeser.files.wordpress.com/2015/03/capa_inspiracao_cigana-2.jpg?w=266&h=365"
+              />
+            </div>
+          </a>
+        </li>
+
+        <li>
+          <a class="cordel-link" href="#cordel/first">
+            <div>
+              <img
+                src="https://longedeser.files.wordpress.com/2015/03/capa_inspiracao_cigana-2.jpg?w=266&h=365"
+              />
+            </div>
+          </a>
+        </li>
+
+        <li>
+          <a class="cordel-link" href="#cordel/first">
+            <div>
+              <img
+                src="https://longedeser.files.wordpress.com/2015/03/capa_inspiracao_cigana-2.jpg?w=266&h=365"
+              />
+            </div>
+          </a>
+        </li>
+      </ul>
+    </main>
+
+    <footer>
+      <p><strong>Orientação:</strong> Professora Roberta Meira</p>
+
+      <p>
+        <strong>Escritores:</strong>
+      </p>
+      <p>Cordel 1 - Nome equipe</p>
+      <p>Cordel 2 - Nome equipe</p>
+
+      <p><strong>Ilustrações:</strong> Daian Ramos</p>
+
+      <p>
+        <strong> Desenvolvimento Web: </strong>
+        Luana Hellmann e Lucas dos Santos Abreu
+      </p>
+    </footer>
+
+    <div class="cordels-container">
+      <div class="cordel-controls">
+        <button id="cordel-close">x</button>
+      </div>
+
+      <div id="cordel-first" class="flipbook">
+        <div class="cordel-page hard">
+          <img
+            src="https://longedeser.files.wordpress.com/2015/03/capa_inspiracao_cigana-2.jpg?w=266&h=365"
+          />
+        </div>
+        <div class="cordel-page">
+          <p>Eu estava num deserto</p>
+
+          <p>Só que era feito de mar</p>
+
+          <p>Água por todos os lados:</p>
+
+          <p>Eu não sabia nadar.</p>
+
+          <p>Perdida sem nenhum norte</p>
+
+          <p>Talvez pelo medo da morte</p>
+
+          <p>Comecei a delirar…</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Avistei longe na praia</p>
+
+          <p>Uma miragem, de certo</p>
+
+          <p>Algo que jamais se viu</p>
+
+          <p>Caminhando ali por perto</p>
+
+          <p>Um tilintar de colares</p>
+
+          <p>Alfazema pelos ares</p>
+
+          <p>No calor do Sol aberto</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Tomou forma de mulher</p>
+
+          <p>De olhos bem amendoados</p>
+
+          <p>E as ondas que beijavam</p>
+
+          <p>Os seus pés, então molhados</p>
+
+          <p>Regressavam com vergonha</p>
+
+          <p>Pelos dedos “ingilhados”</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>As curvas do corpo esguio</p>
+
+          <p>Sob véus se insinuava</p>
+
+          <p>E o vestido esvoaçante</p>
+
+          <p>Rente ao corpo se encostava</p>
+
+          <p>Graças à leve brisa</p>
+
+          <p>Que de maneira precisa</p>
+
+          <p>Com os tecidos desenhava</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Cortando as águas salgadas</p>
+
+          <p>A beldade me alcançou</p>
+
+          <p>Pensei em pedir-lhe ajuda</p>
+
+          <p>Mas algo me enfeitiçou</p>
+
+          <p>Encurvou-se, mendicante</p>
+
+          <p>E o seu braço estirou</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Era como uma cigana</p>
+
+          <p>Mas mostrou-me a sua mão</p>
+
+          <p>E quem julga aqui, se engana</p>
+
+          <p>E recorre à ilusão</p>
+
+          <p>As linhas de minha palma</p>
+
+          <p>os segredos de minh’alma</p>
+
+          <p>A ela pouco serviam</p>
+
+          <p>Com sua mão estendida</p>
+
+          <p>Com a face enternecida</p>
+
+          <p>Eis o que meus olhos liam:</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Num piscar de ligeireza</p>
+
+          <p>A moça se transformou</p>
+
+          <p>Não mais véus e sim farrapos</p>
+
+          <p>O seu corpo definhou</p>
+
+          <p>Cabelo descolorido</p>
+
+          <p>O semblante deprimido</p>
+
+          <p>E a voz rouca murmurou</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>“Os destinos que vislumbro</p>
+
+          <p>Tudo aquilo que já li</p>
+
+          <p>Cada mão que já toquei</p>
+
+          <p>Tudo isso eu perdi</p>
+
+          <p>Não existem mais mistérios</p>
+
+          <p>Há no mundo um revertério</p>
+
+          <p>A descrença mora aqui!</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Há quem tape seus ouvidos</p>
+
+          <p>Há que não estenda à mão</p>
+
+          <p>Com braços entrecruzados</p>
+
+          <p>As pessoas dizem “não”</p>
+
+          <p>Como vou sobreviver?</p>
+
+          <p>O que mais posso fazer</p>
+
+          <p>Pra manter-me na missão?”</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Eu de súbito senti</p>
+
+          <p>Uma enorme compaixão</p>
+
+          <p>Como se aquela velha</p>
+
+          <p>Tocasse o meu coração</p>
+
+          <p>Seu penar em mim doía</p>
+
+          <p>Minha alma revolvia</p>
+
+          <p>Procurando solução</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Foi quando noutro piscar</p>
+
+          <p>Eu gritei: eu acredito!</p>
+
+          <p>Num instante o seu cabelo</p>
+
+          <p>Foi ficando mais bonito</p>
+
+          <p>E de novo, outra vez</p>
+
+          <p>Eu lhes disse: acredito!</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Eu não vi explicação</p>
+
+          <p>Nas palavras que eu dizia</p>
+
+          <p>Como se entoasse um mantra</p>
+
+          <p>Eu apenas repetia</p>
+
+          <p>A mulher que definhara</p>
+
+          <p>Logo rejuvenescia</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Acredito, acredito!</p>
+
+          <p>E uma lágrima caiu</p>
+
+          <p>Se foi minha, se foi dela</p>
+
+          <p>Não se sabe, não se viu</p>
+
+          <p>Como era também salgada</p>
+
+          <p>Pela maré foi tragada</p>
+
+          <p>E a mulher também sumiu</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Eu acordei do meu sonho</p>
+
+          <p>E ainda estava no mar</p>
+
+          <p>Só que não mais à deriva</p>
+
+          <p>Recomecei a remar</p>
+
+          <p>Não conheço a fundo o rumo</p>
+
+          <p>Mas de quando em quando aprumo</p>
+
+          <p>Para nunca naufragar</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Ainda que contra a corrente</p>
+
+          <p>Eu precise navegar</p>
+
+          <p>Continuarei andarilha</p>
+
+          <p>Com histórias pra contar</p>
+
+          <p>Feito uma moça cigana</p>
+
+          <p>Que nunca se desengana</p>
+
+          <p>Se houver quem acreditar!”</p>
+        </div>
+        <div class="hard"></div>
+      </div>
+    </div>
+  </body>
+</html>
