@@ -279,19 +279,19 @@
         });
 
         $(".flipbook")
-          .addClass("on-first-page")
-          .turn({
-            when: {
-              turning: (event, page, pageObject) => {
-                console.log({ event, page });
-                if (page === 1) {
-                  $(event.currentTarget).addClass("on-first-page");
-                  return;
+          .each((i, c) => $(c).addClass("on-first-page").turn({
+              when: {
+                turning: (event, page, pageObject) => {
+                  console.log({ event, page });
+                  if (page === 1) {
+                    $(event.currentTarget).addClass("on-first-page");
+                    return;
+                  }
+                  $(event.currentTarget).removeClass("on-first-page");
                 }
-                $(event.currentTarget).removeClass("on-first-page");
-              },
-            },
-          });
+              }
+            }
+          ));
 
         $("#cordel-close").click(function() {
           $(".cordels-container").css("visibility", "hidden");
@@ -310,7 +310,7 @@
 
         $("#cordel-" + name)
           .css("display", "block")
-          .turn("page", 2);
+          //.turn("page", 2);
       }
     </script>
 
@@ -336,7 +336,7 @@
     <main role="main">
       <ul class="cordel-list">
         <li>
-          <a class="cordel-link" href="#cordel/first">
+          <a class="cordel-link" href="#cordel/escrava-isaura-readaptacao">
             <div>
               <img
                 src="https://longedeser.files.wordpress.com/2015/03/capa_inspiracao_cigana-2.jpg?w=266&h=365"
@@ -346,37 +346,7 @@
         </li>
 
         <li>
-          <a class="cordel-link" href="#cordel/first">
-            <div>
-              <img
-                src="https://longedeser.files.wordpress.com/2015/03/capa_inspiracao_cigana-2.jpg?w=266&h=365"
-              />
-            </div>
-          </a>
-        </li>
-
-        <li>
-          <a class="cordel-link" href="#cordel/first">
-            <div>
-              <img
-                src="https://longedeser.files.wordpress.com/2015/03/capa_inspiracao_cigana-2.jpg?w=266&h=365"
-              />
-            </div>
-          </a>
-        </li>
-
-        <li>
-          <a class="cordel-link" href="#cordel/first">
-            <div>
-              <img
-                src="https://longedeser.files.wordpress.com/2015/03/capa_inspiracao_cigana-2.jpg?w=266&h=365"
-              />
-            </div>
-          </a>
-        </li>
-
-        <li>
-          <a class="cordel-link" href="#cordel/first">
+          <a class="cordel-link" href="#cordel/entre-ficcao-e-realidade">
             <div>
               <img
                 src="https://longedeser.files.wordpress.com/2015/03/capa_inspiracao_cigana-2.jpg?w=266&h=365"
@@ -408,250 +378,356 @@
       <div class="cordel-controls">
         <button id="cordel-close">x</button>
       </div>
-
-      <div id="cordel-first" class="flipbook">
+      <div id="cordel-entre-ficcao-e-realidade" class="flipbook">
         <div class="cordel-page hard">
           <img
             src="https://longedeser.files.wordpress.com/2015/03/capa_inspiracao_cigana-2.jpg?w=266&h=365"
           />
         </div>
         <div class="cordel-page">
-          <p>Eu estava num deserto</p>
+          <p>Entre ficção e realidade</p>
 
-          <p>Só que era feito de mar</p>
+          <p>Camila Melechenco</p>
 
-          <p>Água por todos os lados:</p>
-
-          <p>Eu não sabia nadar.</p>
-
-          <p>Perdida sem nenhum norte</p>
-
-          <p>Talvez pelo medo da morte</p>
-
-          <p>Comecei a delirar…</p>
+          <p>Moroni de Almeida Vidal</p>
         </div>
 
         <div class="cordel-page">
-          <p>Avistei longe na praia</p>
+          <p>Mulheres tão belas e articuladas,</p>
 
-          <p>Uma miragem, de certo</p>
+          <p>citadas por vários</p>
 
-          <p>Algo que jamais se viu</p>
-
-          <p>Caminhando ali por perto</p>
-
-          <p>Um tilintar de colares</p>
-
-          <p>Alfazema pelos ares</p>
-
-          <p>No calor do Sol aberto</p>
+          <p>Mas protagonistas apagadas.</p>
         </div>
 
         <div class="cordel-page">
-          <p>Tomou forma de mulher</p>
+          <p>Nos séculos que serão trabalhados</p>
 
-          <p>De olhos bem amendoados</p>
+          <p>Não teremos mulheres "empoderadas"</p>
 
-          <p>E as ondas que beijavam</p>
+          <p>Serão mulheres lindas, obras de arte</p>
 
-          <p>Os seus pés, então molhados</p>
-
-          <p>Regressavam com vergonha</p>
-
-          <p>Pelos dedos “ingilhados”</p>
+          <p>Emolduradas.</p>
         </div>
 
         <div class="cordel-page">
-          <p>As curvas do corpo esguio</p>
+          <p>Por Bernardo Guimarães,</p>
 
-          <p>Sob véus se insinuava</p>
+          <p>Isaura nos é apresentada.</p>
 
-          <p>E o vestido esvoaçante</p>
+          <p>Uma escrava branca,</p>
 
-          <p>Rente ao corpo se encostava</p>
-
-          <p>Graças à leve brisa</p>
-
-          <p>Que de maneira precisa</p>
-
-          <p>Com os tecidos desenhava</p>
+          <p>Belíssima e educada</p>
         </div>
 
         <div class="cordel-page">
-          <p>Cortando as águas salgadas</p>
+          <p>Porém a pobre mulher é muito amargurada,</p>
 
-          <p>A beldade me alcançou</p>
+          <p>Sente a morte de sua mãe</p>
 
-          <p>Pensei em pedir-lhe ajuda</p>
+          <p>E seu pai, que não pode visitá-la</p>
 
-          <p>Mas algo me enfeitiçou</p>
+          <p>Seu dono, Leôncio, pouco pretende libertá-la</p>
 
-          <p>Encurvou-se, mendicante</p>
-
-          <p>E o seu braço estirou</p>
+          <p>Então, vive sem esperança de ser alforriada.</p>
         </div>
 
         <div class="cordel-page">
-          <p>Era como uma cigana</p>
-
-          <p>Mas mostrou-me a sua mão</p>
-
-          <p>E quem julga aqui, se engana</p>
-
-          <p>E recorre à ilusão</p>
-
-          <p>As linhas de minha palma</p>
-
-          <p>os segredos de minh’alma</p>
-
-          <p>A ela pouco serviam</p>
-
-          <p>Com sua mão estendida</p>
-
-          <p>Com a face enternecida</p>
-
-          <p>Eis o que meus olhos liam:</p>
+          <p>Malvina, esposa de Leôncio,</p>
+          <p>É uma boa mulher, de família rica,</p>
+          <p>mas mesmo assim, subordinada.</p>
+          <p>Vivendo com Leôncio a ser enganada.</p>
         </div>
 
         <div class="cordel-page">
-          <p>Num piscar de ligeireza</p>
-
-          <p>A moça se transformou</p>
-
-          <p>Não mais véus e sim farrapos</p>
-
-          <p>O seu corpo definhou</p>
-
-          <p>Cabelo descolorido</p>
-
-          <p>O semblante deprimido</p>
-
-          <p>E a voz rouca murmurou</p>
+          <p>O homem a traí a todo momento,</p>
+          <p>Mesmo sendo compreensiva,</p>
+          <p>Leôncio só lhe causa tormento</p>
         </div>
 
         <div class="cordel-page">
-          <p>“Os destinos que vislumbro</p>
-
-          <p>Tudo aquilo que já li</p>
-
-          <p>Cada mão que já toquei</p>
-
-          <p>Tudo isso eu perdi</p>
-
-          <p>Não existem mais mistérios</p>
-
-          <p>Há no mundo um revertério</p>
-
-          <p>A descrença mora aqui!</p>
+          <p>Existe uma terceira mulher na história.</p>
+          <p>É Rosa, escravizada e negra,</p>
+          <p>Leôncio a considera escória,</p>
+          <p>Pois a usou e trocou-a por Isaura</p>
         </div>
 
         <div class="cordel-page">
-          <p>Há quem tape seus ouvidos</p>
-
-          <p>Há que não estenda à mão</p>
-
-          <p>Com braços entrecruzados</p>
-
-          <p>As pessoas dizem “não”</p>
-
-          <p>Como vou sobreviver?</p>
-
-          <p>O que mais posso fazer</p>
-
-          <p>Pra manter-me na missão?”</p>
+          <p>Sendo uma mulher vingativa,</p>
+          <p>Não podendo descontar em Leôncio,</p>
+          <p>Sugere a Malvina, que se livrem da cativa</p>
         </div>
 
         <div class="cordel-page">
-          <p>Eu de súbito senti</p>
-
-          <p>Uma enorme compaixão</p>
-
-          <p>Como se aquela velha</p>
-
-          <p>Tocasse o meu coração</p>
-
-          <p>Seu penar em mim doía</p>
-
-          <p>Minha alma revolvia</p>
-
-          <p>Procurando solução</p>
+          <p>Já na obra de Maria Firmina dos Reis,</p>
+          <p>primeira escritora negra da História do Brasil,</p>
+          <p>temos a presença de outras mulheres descritas como</p>
+          <p>[encantáveis</p>
+          <p>mas submersas na melancolia</p>
         </div>
 
         <div class="cordel-page">
-          <p>Foi quando noutro piscar</p>
-
-          <p>Eu gritei: eu acredito!</p>
-
-          <p>Num instante o seu cabelo</p>
-
-          <p>Foi ficando mais bonito</p>
-
-          <p>E de novo, outra vez</p>
-
-          <p>Eu lhes disse: acredito!</p>
+          <p>Comecemos com Úrsula</p>
+          <p>a personagem que deu nome ao livro</p>
+          <p>era branca, tímida, acanhada, esta donzela</p>
+          <p>que amava se afugentar na natureza</p>
         </div>
 
         <div class="cordel-page">
-          <p>Eu não vi explicação</p>
-
-          <p>Nas palavras que eu dizia</p>
-
-          <p>Como se entoasse um mantra</p>
-
-          <p>Eu apenas repetia</p>
-
-          <p>A mulher que definhara</p>
-
-          <p>Logo rejuvenescia</p>
+          <p>Sua mãe, Luísa B, era uma bela mulher</p>
+          <p>que estava enferma, arrastando a custo sua penosa existência</p>
+          <p>para que a sua filha pudesse acolher</p>
+          <p>de toda a sofrência</p>
         </div>
 
         <div class="cordel-page">
-          <p>Acredito, acredito!</p>
-
-          <p>E uma lágrima caiu</p>
-
-          <p>Se foi minha, se foi dela</p>
-
-          <p>Não se sabe, não se viu</p>
-
-          <p>Como era também salgada</p>
-
-          <p>Pela maré foi tragada</p>
-
-          <p>E a mulher também sumiu</p>
+          <p>Nessa história ainda há Susana</p>
+          <p>uma mulher africana que era a escravizada de Luísa,</p>
+          <p>para a qual, a liberdade, era apenas uma lembrança desumana</p>
+          <p>da barbaridade daqueles que se achavam humanos</p>
         </div>
 
         <div class="cordel-page">
-          <p>Eu acordei do meu sonho</p>
-
-          <p>E ainda estava no mar</p>
-
-          <p>Só que não mais à deriva</p>
-
-          <p>Recomecei a remar</p>
-
-          <p>Não conheço a fundo o rumo</p>
-
-          <p>Mas de quando em quando aprumo</p>
-
-          <p>Para nunca naufragar</p>
+          <p>E como se não fosse suficiente tamanho sofrimento dessas</p>
+          <p>[mulheres</p>
+          <p>O irmão de Luísa, Fernando, confessou ter matado seu esposo</p>
+          <p>E ainda ousou pedir a mão de Úrsula</p>
+          <p>Sua mãe morreu ante ao desdenhoso</p>
         </div>
 
         <div class="cordel-page">
-          <p>Ainda que contra a corrente</p>
-
-          <p>Eu precise navegar</p>
-
-          <p>Continuarei andarilha</p>
-
-          <p>Com histórias pra contar</p>
-
-          <p>Feito uma moça cigana</p>
-
-          <p>Que nunca se desengana</p>
-
-          <p>Se houver quem acreditar!”</p>
+          <p>Úrsula então fugiu para se casar com a sua paixão,</p>
+          <p>Tancredo, homem gentil e amoroso</p>
+          <p>mas logo Fernando os encontrou e matou o amor de Úrsula</p>
+          <p>[sem compaixão</p>
+          <p>E trancou a escravizada Susana no porão sem comida e luz,</p>
+          <p>[o asqueroso</p>
+          <p>Úrsula morrera então com a dor de sua perda</p>
+          <p>E Susana condenada a morrer como em um Navio Negreiro</p>
         </div>
+
+        <div class="cordel-page">
+          <p>Diante de tamanha dor e crueldade na ficção</p>
+          <p>Podemos perceber a atroz sobrevivência feminina na realidade</p>
+          <p>E talvez você se pergunte</p>
+          <p>[“qual o futuro dessa tal humanidade?”</p>
+          <p>E nós vos respondemos. Não temos um ponto de chegada</p>
+          <p>Mas existe uma luta constante,</p>
+          <p>Que não só às mulheres foi delegada.</p>
+          <p>Junto ao feminismo lutemos contra essa situação inquietante</p>
+        </div>
+
+        <div class="hard"></div>
+      </div>
+
+      <div id="cordel-escrava-isaura-readaptacao" class="flipbook">
+        <div class="cordel-page hard">
+          <img
+            src="https://longedeser.files.wordpress.com/2015/03/capa_inspiracao_cigana-2.jpg?w=266&h=365"
+          />
+        </div>
+        <div class="cordel-page">
+          <p>Escrava Isaura – readaptação</p>
+
+          <p>Gabrielle Rodrigues</p>
+
+          <p>Gabriel Lopes</p>
+
+          <p>Vinícios Medeiros</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Isaura era uma moça linda, negra</p>
+
+          <p>fina e educada</p>
+
+          <p>lia e tocava piano</p>
+
+          <p>porque era prendada</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>trabalhava em casa de família</p>
+
+          <p>para pagar os estudos</p>
+
+          <p>dona Malvina a adorava</p>
+
+          <p>porque piano ela tocava</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>o que Isaura não sabia</p>
+
+          <p>era que Leôncio a queria</p>
+
+          <p>mas ela não podia</p>
+
+          <p>a patroa não perdoaria</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>em tempos de pandemia</p>
+
+          <p>Leôncio mandava juras de amor</p>
+
+          <p>pelo computador</p>
+
+          <p>mas Isaura não respondia, a insistência acabaria</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Leôncio declarou seu amor</p>
+
+          <p>Isaura não aceitou, Malvina ouviu</p>
+
+          <p>e Leôncio escolheu</p>
+
+          <p>Isaura não quis Leôncio e pra casa retornou</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Leôncio sequestrou Isaura, por amor</p>
+
+          <p>mas a liberdade que Leôncio oferecia</p>
+
+          <p>dependia do sim</p>
+
+          <p>que Isaura não dizia</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Isaura passava os dias pensando na sua família</p>
+
+          <p>sua ancestralidade pedia luta</p>
+
+          <p>luta essa que nunca cessa</p>
+
+          <p>que liberdade tem se tornado essa?</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Leôncio era obsessivo, não desistia</p>
+
+          <p>Isaura não trairia Malvina, patroa e amiga</p>
+
+          <p>Leôncio se enfurecia</p>
+
+          <p>a cada não que ela dizia</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>- Isaura, porque você me rejeita?</p>
+
+          <p>-Jamais trairia minha amiga</p>
+
+          <p>Leôncio percebeu que Isaura não cederia</p>
+
+          <p>a força seria o único jeito de fazê-la minha</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Miguel, pai de Isaura, foi na polícia procurá-la</p>
+
+          <p>registrou a ocorrência e avisou sobre a insistência</p>
+
+          <p>de Leôncio a cortejá-la</p>
+
+          <p>até que Miguel a encontrou no cativeiro</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Planejaram fugir com o carro</p>
+
+          <p>chegaram no aeroporto e em Recife pousaram</p>
+
+          <p>Alugaram uma casa</p>
+
+          <p>e por lá ficaram</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Leôncio não suportou a fuga,</p>
+
+          <p>colocou anúncios no Facebook sobre a</p>
+
+          <p>sua amada “desaparecida”</p>
+
+          <p>passando pelo WhatsApp a foto batida</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>no Recife, Isaura se apaixonou</p>
+
+          <p>e logo com Álvaro noivou</p>
+
+          <p>seu pai ficou em êxtase,</p>
+
+          <p>mas as surpresas não terminariam</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Leôncio encontrou Isaura, viu fotos do noivado</p>
+
+          <p>que no Instagram foi postado</p>
+
+          <p>Leôncio pensou, se não é minha</p>
+
+          <p>de Álvaro é que não vai ser!</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Leôncio partiu para Recife e Isaura raptou</p>
+
+          <p>de volta ao cativeiro, Leôncio falou:</p>
+
+          <p>- Case comigo ou vai ser pior! Isaura se levantou</p>
+          <p></p>
+
+          <p>- Não caso, meu amor não pertence ao senhor!</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Leôncio furioso, partiu pra cima de Isaura,</p>
+
+          <p>mas Isaura não seria tomada, ela contava com a força</p>
+
+          <p>de todas as suas ancestrais</p>
+
+          <p>e de Leôncio conseguiu escapar, quando com força sua</p>
+          <p>[cabeça bateu</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Isaura não precisava de um homem forte,</p>
+
+          <p>ela já era suficiente</p>
+
+          <p>Reuniu-se com seu pai,</p>
+
+          <p>que com a polícia chegava</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Leôncio estava na casa, com a cabeça machucada</p>
+
+          <p>e o orgulho ferido, foi direto pra cadeia,</p>
+
+          <p>mas Isaura não havia esquecido</p>
+
+          <p>Ser mulher no Brasil, é um negócio sofrido</p>
+        </div>
+
+        <div class="cordel-page">
+          <p>Isaura encontrou seu pai, e seu noivo Álvaro</p>
+
+          <p>o casamento logo ocorreu,</p>
+
+          <p>Isaura encontrou alguém que finalmente a acolheu</p>
+
+          <p>E a qual seu amor sempre pertenceu.</p>
+        </div>
+
         <div class="hard"></div>
       </div>
     </div>
