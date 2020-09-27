@@ -195,14 +195,23 @@
 
       .flipbook div p {
         line-height: 1em;
-        font-size: 0.8rem;
+        font-size: 0.6rem;
         padding: 0 0.5rem;
         margin-bottom: 0.15rem;
+        text-align: center;
+        padding-bottom: 0.5em;
       }
 
       @media (min-width: 576px) {
         .flipbook div p {
-          font-size: 1.0rem;
+          font-size: 0.7rem;
+        }
+      }
+
+      @media (min-width: 641px) {
+        .flipbook div p {
+          font-size: 1rem;
+          padding-bottom: 1em;
         }
       }
 
@@ -213,13 +222,11 @@
       .flipbook .cordel-page {
         display: flex;
         justify-content: center;
-        align-items: center;
         flex-direction: column;
       }
 
       .flipbook .page {
         background-color: white;
-        text-align: center;
       }
 
       .flipbook .hard {
@@ -278,8 +285,10 @@
           setTimeout(() => openCordel(name), 1000);
         });
 
-        $(".flipbook")
-          .each((i, c) => $(c).addClass("on-first-page").turn({
+        $(".flipbook").each((i, c) =>
+          $(c)
+            .addClass("on-first-page")
+            .turn({
               when: {
                 turning: (event, page, pageObject) => {
                   console.log({ event, page });
@@ -290,8 +299,8 @@
                   $(event.currentTarget).removeClass("on-first-page");
                 }
               }
-            }
-          ));
+            })
+        );
 
         $("#cordel-close").click(function() {
           $(".cordels-container").css("visibility", "hidden");
@@ -310,11 +319,9 @@
 
         $("#cordel-" + name)
           .css("display", "block")
-          //.turn("page", 2);
+          .turn("page", 2);
       }
     </script>
-
-    <style></style>
   </head>
   <body>
     <header>
@@ -325,10 +332,11 @@
           ano do curso de História da Universidade da Região de Joinville
           (Univille), na disciplina de História e Historiografia do Brasil II,
           durante o terceiro bimestre letivo de 2020, sob orientação da
-          Professora Roberta Meira. <br> A proposta dessa atividade consistia que
-          após a leitura e estudo do romance “Escrava Isaura”, de Bernardo
-          Guimarães, os estudantes desenvolvessem cordéis a partir dos contextos
-          abordados no romance e estudados em sala.
+          Professora Roberta Meira. <br />
+          A proposta dessa atividade consistia que após a leitura e estudo do
+          romance “Escrava Isaura”, de Bernardo Guimarães, os estudantes
+          desenvolvessem cordéis a partir dos contextos abordados no romance e
+          estudados em sala.
         </p>
       </div>
     </header>
@@ -362,12 +370,19 @@
       <p>
         <strong>Escritores:</strong>
       </p>
-      <p>Escrava Isaura – readaptação - Gabrielle Rodrigues, Gabriel Lopes e Vinícius Medeiros</p>
-      <p>Entre ficção e realidade - Camila Melechenco e Moroni de Almeida Vidal</p>
+      <p>
+        Escrava Isaura – readaptação - Gabrielle Rodrigues, Gabriel Lopes e
+        Vinícius Medeiros
+      </p>
+      <p>
+        Entre ficção e realidade - Camila Melechenco e Moroni de Almeida Vidal
+      </p>
 
       <p><strong> Ilustrações:</strong> Daian Ramos</p>
-      <p><strong> Desenvolvimento Web: </strong> Luana Hellmann e Lucas dos Santos Abreu</p>	 
-	  <p><strong> 
+      <p>
+        <strong> Desenvolvimento Web: </strong> Luana Hellmann e Lucas dos
+        Santos Abreu
+      </p>
     </footer>
 
     <div class="cordels-container">
@@ -483,7 +498,9 @@
         </div>
 
         <div class="cordel-page">
-          <p>E como se não fosse suficiente tamanho sofrimento dessas mulheres</p>
+          <p>
+            E como se não fosse suficiente tamanho sofrimento dessas mulheres
+          </p>
           <p>O irmão de Luísa, Fernando, confessou ter matado seu esposo</p>
           <p>E ainda ousou pedir a mão de Úrsula</p>
           <p>Sua mãe morreu ante ao desdenhoso</p>
@@ -492,8 +509,13 @@
         <div class="cordel-page">
           <p>Úrsula então fugiu para se casar com a sua paixão,</p>
           <p>Tancredo, homem gentil e amoroso</p>
-          <p>mas logo Fernando os encontrou e matou o amor de Úrsula sem compaixão</p>
-          <p>E trancou a escravizada Susana no porão sem comida e luz o asqueroso</p>
+          <p>
+            mas logo Fernando os encontrou e matou o amor de Úrsula sem
+            compaixão
+          </p>
+          <p>
+            E trancou a escravizada Susana no porão sem comida e luz o asqueroso
+          </p>
           <p>Úrsula morrera então com a dor de sua perda</p>
           <p>E Susana condenada a morrer como em um Navio Negreiro</p>
         </div>
@@ -519,11 +541,11 @@
         </div>
         <div class="cordel-page">
           <p>Escrava Isaura – readaptação</p>
-		  <p>Autores:</p>
+          <p>Autores:</p>
           <p>Gabrielle Rodrigues</p>
           <p>Gabriel Lopes</p>
           <p>Vinícios Medeiros</p>
-		  <p>Capa:</p>	
+          <p>Capa:</p>
         </div>
 
         <div class="cordel-page">
@@ -635,7 +657,9 @@
           <p>Leôncio furioso, partiu pra cima de Isaura,</p>
           <p>mas Isaura não seria tomada, ela contava com a força</p>
           <p>de todas as suas ancestrais</p>
-          <p>e de Leôncio conseguiu escapar, quando com força sua cabeça bateu</p>
+          <p>
+            e de Leôncio conseguiu escapar, quando com força sua cabeça bateu
+          </p>
         </div>
 
         <div class="cordel-page">
