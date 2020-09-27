@@ -23,9 +23,11 @@
         --img-big-width: calc(50vw - 1rem);
         --img-height: calc(138px * 2.8);
         --img-margin-top: 10px;
-        --thread-padding: 160px;
-        --clamp-height: 290px;
+        --thread-padding: 140px;
         --thread-length: calc(var(--img-width) + ((var(--img-width) / 4) * 2));
+
+        --clamp-width: auto;
+        --clamp-height: 200px;
       }
 
       @media (min-width: 576px) {
@@ -72,6 +74,9 @@
 
         display: flex;
         justify-content: center;
+
+        background: url(corda.png) repeat-x left 5px;
+        background-size: 250px;
       }
 
       ul.cordel-list {
@@ -86,8 +91,7 @@
         white-space: nowrap;
 
         height: calc(
-          var(--img-height) + var(--img-margin-top) + var(--thread-padding) +
-            100px
+          var(--img-height) + var(--img-margin-top) + var(--thread-padding)
         );
       }
 
@@ -102,18 +106,18 @@
         z-index: 1;
         position: absolute;
 
-        background: url(frente.png) no-repeat;
+        background: url(grampo_frente.png) no-repeat;
         background-position: center top;
-        background-size: var(--thread-length);
+        background-size: var(--clamp-width) var(--clamp-height);
       }
 
       ul.cordel-list li {
         position: relative;
         padding-top: var(--thread-padding);
 
-        background: url(fundo.png) no-repeat;
+        background: url(grampo_fundo.png) no-repeat;
         background-position: center top;
-        background-size: var(--thread-length);
+        background-size: var(--clamp-width) var(--clamp-height);
         background-attachment: local;
 
         display: inline-block;
