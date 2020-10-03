@@ -30,7 +30,15 @@
         --clamp-height: 200px;
       }
 
+      .screen-warning {
+        display: block;
+      }
+
       @media (min-width: 576px) {
+        .screen-warning {
+          display: none;
+        }
+
         html {
           --img-big-width: calc(40vw * 0.8);
         }
@@ -360,6 +368,12 @@
           romance “Escrava Isaura”, de Bernardo Guimarães, os estudantes
           desenvolvessem cordéis a partir dos contextos abordados no romance e
           estudados em sala.
+        </p>
+        <p class="screen-warning alert alert-warning">
+          Infelizmente a experiencia desenvolvida neste site não funciona tão
+          bem em telas pequenas como a de celulares, caso deseje continuar no
+          site, recomendamos utilizar a tela em modo "paisagem" dessa forma a
+          leitura dos cordéis será melhor.
         </p>
       </div>
     </header>
