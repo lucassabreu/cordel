@@ -223,18 +223,20 @@
         display: flex;
         justify-content: center;
         flex-direction: column;
-      }
-
-      .flipbook .cordel-page img {
-        width: auto;
-        height: auto;
-        max-width: 100%;
-        max-height: 100%;
+        height: 100%;
+        width: 50%;
       }
 
       .flipbook .cordel-page.img-bottom {
         flex-direction: column-reverse;
         justify-content: end;
+      }
+
+      .flipbook .cordel-page.img-bottom img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
       }
 
       .flipbook .page {
@@ -297,30 +299,11 @@
           setTimeout(() => openCordel(name), 1000);
         });
 
-        $(".flipbook").each((i, c) =>
-          $(c)
-            .addClass("on-first-page")
-            .turn({
-              when: {
-                turning: (event, page, pageObject) => {
-                  console.log({
-                    event: event,
-                    page: page,
-                    pageObject: pageObject
-                  });
-                  if (page === 1) {
-                    $(event.currentTarget).addClass("on-first-page");
-                    return;
-                  }
-                  $(event.currentTarget).removeClass("on-first-page");
-                }
-              }
-            })
-        );
+        $(".flipbook").addClass("on-first-page");
 
         $("#cordel-close").click(function() {
           $(".cordels-container").css("visibility", "hidden");
-          $(".flipbook")
+          $(".flipbook.flipbook-made")
             .addClass("on-first-page")
             .each((i, e) => $(e).turn("page", 1));
 
@@ -329,12 +312,35 @@
         });
       });
 
+      function makeFlipbook(c) {
+        return $(c).is(".flipbook-made")
+          ? $(c)
+          : $(c)
+              .addClass("flipbook-made")
+              .turn({
+                when: {
+                  turning: (event, page, pageObject) => {
+                    console.log({
+                      event: event,
+                      page: page,
+                      pageObject: pageObject
+                    });
+                    if (page === 1) {
+                      $(event.currentTarget).addClass("on-first-page");
+                      return;
+                    }
+                    $(event.currentTarget).removeClass("on-first-page");
+                  }
+                }
+              });
+      }
+
       function openCordel(name) {
         $(".cordel-link img").css("display", "none");
         $(".flipbook").css("display", "none");
         $(".cordels-container").css("visibility", "visible");
 
-        $("#cordel-" + name)
+        var c = makeFlipbook($("#cordel-" + name))
           .css("display", "block")
           .turn("page", 2);
       }
@@ -620,8 +626,6 @@
           <p>Isaura encontrou alguém que finalmente a acolheu</p>
           <p>E a qual seu amor sempre pertenceu.</p>
         </div>
-
-        <div class="hard"></div>
       </div>
 
       <div id="cordel-entre-ficcao-e-realidade" class="flipbook">
@@ -1132,8 +1136,6 @@
           <p>"Ó meu Orixá, nessa terra o azul brilha bonito"</p>
           <p>Mas na minha terra o meu azul brilha melhor</p>
         </div>
-
-        <div class="hard"></div>
       </div>
 
       <div id="cordel-casamento-a-liberdade" class="flipbook">
@@ -1207,8 +1209,6 @@
           <p>Muito perturbado saiu atordoado</p>
           <p>Só se ouviu lá fora, um tiro de pistola.</p>
         </div>
-
-        <div class="hard"></div>
       </div>
     </div>
   </body>
