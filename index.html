@@ -69,30 +69,19 @@
         }
       }
 
-      body > main {
-        flex-grow: 1;
-
-        display: flex;
-        justify-content: center;
-
-        background: url(corda.png) repeat-x left 5px;
-        background-size: 250px;
-      }
-
       ul.cordel-list {
+        background: url(corda.png) repeat-x left 85px;
+        background-size: 250px;
+
+        display: inline-block;
+        text-align: center;
+
         margin: 0;
         padding: 0;
 
-        position: relative;
-
         margin: auto;
         margin-top: -5rem;
-        overflow-x: auto;
-        white-space: nowrap;
-
-        height: calc(
-          var(--img-height) + var(--img-margin-top) + var(--thread-padding)
-        );
+        margin-bottom: var(--thread-padding);
       }
 
       ul.cordel-list li:before {
@@ -225,6 +214,18 @@
         flex-direction: column;
       }
 
+      .flipbook .cordel-page img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      .flipbook .cordel-page.img-bottom {
+        flex-direction: column-reverse;
+        justify-content: end;
+      }
+
       .flipbook .page {
         background-color: white;
       }
@@ -346,7 +347,7 @@
         <li>
           <a class="cordel-link" href="#cordel/escrava-isaura-readaptacao">
             <div>
-              <img src="./covers/capa-provisoria.png" />
+              <img src="./covers/escrava-isaura-readaptacao.jpg" />
             </div>
           </a>
         </li>
@@ -354,7 +355,7 @@
         <li>
           <a class="cordel-link" href="#cordel/entre-ficcao-e-realidade">
             <div>
-              <img src="./covers/capa-camila.png" />
+              <img src="./covers/entre-ficcao-e-realidade.jpg" />
             </div>
           </a>
         </li>
@@ -362,7 +363,7 @@
         <li>
           <a class="cordel-link" href="#cordel/a-escrava-que-nao-era-isaura">
             <div>
-              <img src="./covers/capa-marina.png" />
+              <img src="./covers/a-escrava-que-nao-era-isaura.jpg" />
             </div>
           </a>
         </li>
@@ -370,7 +371,7 @@
         <li>
           <a class="cordel-link" href="#cordel/gilberto-freyre-e-racismo">
             <div>
-              <img src="./covers/capa-borba.png" />
+              <img src="./covers/gilberto-freyre-e-racismo.jpg" />
             </div>
           </a>
         </li>
@@ -378,7 +379,7 @@
         <li>
           <a class="cordel-link" href="#cordel/violacao-da-dignidade">
             <div>
-              <img src="./covers/capa-provisoria.png" />
+              <img src="./covers/violacao-da-dignidade.jpg" />
             </div>
           </a>
         </li>
@@ -386,7 +387,7 @@
         <li>
           <a class="cordel-link" href="#cordel/maezinha-morena">
             <div>
-              <img src="./covers/capa-provisoria.png" />
+              <img src="./covers/maezinha-morena.jpg" />
             </div>
           </a>
         </li>
@@ -394,7 +395,7 @@
         <li>
           <a class="cordel-link" href="#cordel/casamento-a-liberdade">
             <div>
-              <img src="./covers/capa-provisoria.png" />
+              <img src="./covers/casamento-a-liberdade.jpg" />
             </div>
           </a>
         </li>
@@ -444,7 +445,7 @@
 
       <div id="cordel-escrava-isaura-readaptacao" class="flipbook">
         <div class="cordel-page hard">
-          <img src="./covers/capa-provisoria.png" />
+          <img src="./covers/escrava-isaura-readaptacao.jpg" />
         </div>
         <div class="cordel-page">
           <p>Escrava Isaura – readaptação</p>
@@ -595,7 +596,7 @@
 
       <div id="cordel-entre-ficcao-e-realidade" class="flipbook">
         <div class="cordel-page hard">
-          <img src="./covers/capa-camila.png" />
+          <img src="./covers/entre-ficcao-e-realidade.jpg" />
         </div>
         <div class="cordel-page">
           <p>Entre ficção e realidade</p>
@@ -724,7 +725,7 @@
 
       <div id="cordel-a-escrava-que-nao-era-isaura" class="flipbook">
         <div class="cordel-page hard">
-          <img src="./covers/capa-marina.png" />
+          <img src="./covers/a-escrava-que-nao-era-isaura.jpg" />
         </div>
         <div class="cordel-page">
           <p>A escrava que não era Isaura</p>
@@ -862,7 +863,10 @@
           <p>expondo essa história vil</p>
           <p>escondida na bandeira</p>
           <p>dessa pátria ‘mãe gentil’.</p>
-          <img src="./covers/imagem-marina-fim.png" />
+        </div>
+
+        <div class="cordel-page img-bottom">
+          <img src="./covers/imagem-marina-fim.jpg" />
         </div>
 
         <div class="cordel-page">
@@ -877,7 +881,7 @@
 
       <div id="cordel-gilberto-freyre-e-racismo" class="flipbook">
         <div class="cordel-page hard">
-          <img src="./covers/capa-borba.png" />
+          <img src="./covers/gilberto-freyre-e-racismo.jpg" />
         </div>
         <div class="cordel-page">
           <p>Gilberto Freyre e Racismo</p>
@@ -978,8 +982,9 @@
 
       <div id="cordel-maezinha-morena" class="flipbook">
         <div class="cordel-page hard">
-          <img src="./covers/capa-provisoria.png" />
+          <img src="./covers/maezinha-morena.jpg" />
         </div>
+
         <div class="cordel-page">
           <p>Mãezinha Morena, rainha do Sertão</p>
           <p>Autores:</p>
@@ -1028,13 +1033,11 @@
           <p>Quem viveu lembra de tudo</p>
           <p>e quem não lembrou, vai ter um dia mais contente.</p>
         </div>
-
-        <div class="hard"></div>
       </div>
 
       <div id="cordel-violacao-da-dignidade" class="flipbook">
         <div class="cordel-page hard">
-          <img src="./covers/capa-provisoria.png" />
+          <img src="./covers/violacao-da-dignidade.jpg" />
         </div>
         <div class="cordel-page">
           <p>A violação da dignidade</p>
@@ -1105,7 +1108,7 @@
 
       <div id="cordel-casamento-a-liberdade" class="flipbook">
         <div class="cordel-page hard">
-          <img src="./covers/capa-provisoria.png" />
+          <img src="./covers/casamento-a-liberdade.jpg" />
         </div>
         <div class="cordel-page">
           <p>Do casamento à Liberdade</p>
