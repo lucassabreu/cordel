@@ -19,14 +19,14 @@
 
         --main-cover-color: #c8c8c8;
 
-        --img-width: calc(100px * 2.3);
+        --img-width: 230px;
         --img-big-width: calc(50vw - 1rem);
-        --img-height: calc(138px * 2.8);
+        --img-height: 310px;
         --img-margin-top: 10px;
         --thread-padding: 140px;
         --thread-length: calc(var(--img-width) + ((var(--img-width) / 4) * 2));
 
-        --clamp-width: auto;
+        --clamp-width: 48px;
         --clamp-height: 200px;
       }
 
@@ -70,37 +70,45 @@
       }
 
       ul.cordel-list {
-        background: url(corda.png) repeat-x left 85px;
-        background-size: 250px;
-
-        display: inline-block;
+        display: flex;
         text-align: center;
 
-        margin: 0;
+        flex-wrap: wrap;
+
         padding: 0;
 
-        margin: auto;
         margin-top: -5rem;
         margin-bottom: var(--thread-padding);
       }
 
-      ul.cordel-list li:before {
+      ul.cordel-list li {
+        flex: 1;
+        list-style: none;
+        margin-bottom: 2rem;
+
+        background: url(corda.png) repeat-x left 85px;
+        background-size: 250px;
+      }
+
+      ul.cordel-list .cordel-link:before {
         content: "";
         display: block;
 
+        margin: auto;
         width: calc(var(--img-width) * 1.5);
         height: var(--clamp-height);
         margin-top: calc(var(--thread-padding) * -1);
-        margin-bottom: calc(var(--thread-padding) * -1);
-        z-index: 1;
         position: absolute;
 
         background: url(grampo_frente.png) no-repeat;
-        background-position: center top;
+        background-position: calc(
+            (var(--img-width) * 1.5 - var(--clamp-width)) / 2
+          )
+          top;
         background-size: var(--clamp-width) var(--clamp-height);
       }
 
-      ul.cordel-list li {
+      ul.cordel-list .cordel-link {
         position: relative;
         padding-top: var(--thread-padding);
 
@@ -111,7 +119,6 @@
 
         display: inline-block;
         width: calc(var(--img-width) * 1.5);
-        height: var(--img-height);
       }
 
       .cordel-link div {
@@ -120,19 +127,22 @@
         margin: 0;
         margin-top: var(--img-margin-top);
         padding: 0 calc(var(--img-width) / 4);
-        justify-content: center;
         align-items: center;
         flex-direction: column;
       }
 
-      .cordel-link div img {
+      .cordel-link img {
+        height: var(--img-height);
         width: var(--img-width);
-        transition: width 1s ease;
+        transition: width 1s ease, height 1s ease;
+      }
+
+      .cordel-link div.zoom img {
+        height: auto;
+        width: var(--img-big-width);
       }
 
       .cordel-link div.zoom {
-        --img-width: var(--img-big-width);
-
         height: 100vh;
         background-color: black;
         width: 100vw;
@@ -142,6 +152,7 @@
         top: 0;
         left: 0;
         z-index: 9;
+        justify-content: center;
       }
 
       .cordel-controls {
@@ -271,7 +282,7 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function() {
-        $("a.cordel-link").click(function() {
+        $(".cordel-link a").click(function() {
           const name = this.href
             .split("#")
             .pop()
@@ -280,7 +291,7 @@
             .join("/");
 
           $(this)
-            .find("div")
+            .parent()
             .addClass("zoom");
 
           setTimeout(() => openCordel(name), 1000);
@@ -292,7 +303,11 @@
             .turn({
               when: {
                 turning: (event, page, pageObject) => {
-                  console.log({ event, page });
+                  console.log({
+                    event: event,
+                    page: page,
+                    pageObject: pageObject
+                  });
                   if (page === 1) {
                     $(event.currentTarget).addClass("on-first-page");
                     return;
@@ -307,9 +322,10 @@
           $(".cordels-container").css("visibility", "hidden");
           $(".flipbook")
             .addClass("on-first-page")
-            .turn("page", 1);
+            .each((i, e) => $(e).turn("page", 1));
+
           $(".cordel-link img").css("display", "inline");
-          $("a.cordel-link div").removeClass("zoom");
+          $(".cordel-link div").removeClass("zoom");
         });
       });
 
@@ -345,59 +361,73 @@
     <main role="main">
       <ul class="cordel-list">
         <li>
-          <a class="cordel-link" href="#cordel/escrava-isaura-readaptacao">
+          <div class="cordel-link">
             <div>
-              <img src="./covers/escrava-isaura-readaptacao.jpg" />
+              <a href="#cordel/escrava-isaura-readaptacao">
+                <img src="./covers/escrava-isaura-readaptacao.jpg" />
+              </a>
             </div>
-          </a>
+          </div>
         </li>
 
         <li>
-          <a class="cordel-link" href="#cordel/entre-ficcao-e-realidade">
+          <div class="cordel-link">
             <div>
-              <img src="./covers/entre-ficcao-e-realidade.jpg" />
+              <a href="#cordel/entre-ficcao-e-realidade">
+                <img src="./covers/entre-ficcao-e-realidade.jpg" />
+              </a>
             </div>
-          </a>
+          </div>
         </li>
 
         <li>
-          <a class="cordel-link" href="#cordel/a-escrava-que-nao-era-isaura">
+          <div class="cordel-link">
             <div>
-              <img src="./covers/a-escrava-que-nao-era-isaura.jpg" />
+              <a href="#cordel/a-escrava-que-nao-era-isaura">
+                <img src="./covers/a-escrava-que-nao-era-isaura.jpg" />
+              </a>
             </div>
-          </a>
+          </div>
         </li>
 
         <li>
-          <a class="cordel-link" href="#cordel/gilberto-freyre-e-racismo">
+          <div class="cordel-link">
             <div>
-              <img src="./covers/gilberto-freyre-e-racismo.jpg" />
+              <a href="#cordel/gilberto-freyre-e-racismo">
+                <img src="./covers/gilberto-freyre-e-racismo.jpg" />
+              </a>
             </div>
-          </a>
+          </div>
         </li>
 
         <li>
-          <a class="cordel-link" href="#cordel/violacao-da-dignidade">
+          <div class="cordel-link">
             <div>
-              <img src="./covers/violacao-da-dignidade.jpg" />
+              <a href="#cordel/violacao-da-dignidade">
+                <img src="./covers/violacao-da-dignidade.jpg" />
+              </a>
             </div>
-          </a>
+          </div>
         </li>
 
         <li>
-          <a class="cordel-link" href="#cordel/maezinha-morena">
+          <div class="cordel-link">
             <div>
-              <img src="./covers/maezinha-morena.jpg" />
+              <a href="#cordel/maezinha-morena">
+                <img src="./covers/maezinha-morena.jpg" />
+              </a>
             </div>
-          </a>
+          </div>
         </li>
 
         <li>
-          <a class="cordel-link" href="#cordel/casamento-a-liberdade">
+          <div class="cordel-link">
             <div>
-              <img src="./covers/casamento-a-liberdade.jpg" />
+              <a href="#cordel/casamento-a-liberdade">
+                <img src="./covers/casamento-a-liberdade.jpg" />
+              </a>
             </div>
-          </a>
+          </div>
         </li>
       </ul>
     </main>
@@ -866,7 +896,7 @@
         </div>
 
         <div class="cordel-page img-bottom">
-          <img src="./covers/imagem-marina-fim.jpg" />
+          <img src="./covers/imagem-marina-fim.png" />
         </div>
 
         <div class="cordel-page">
